@@ -14,33 +14,22 @@ export HF_TOKEN=HIDDEn
 
 ## Usage
 
-### Run everything
+1. run the collection scripts
+2. run the whole cleaning pipeline
 ```bash
 python scripts/run_pipeline.py
 ```
-
-### Run specific religions only
-```bash
-python scripts/run_pipeline.py --religions christianity islam
-```
-
-### To Run the Finetuning
+3. Run the finetuning
 Just make sure that you have the training data you want in the correct instruction and answer format.
 ```
 bash scripts/run_finetune.sh
 ```
+4. run the scripts for evaluation and perplexity
+5. run the scripts for generating prompts
+6. run the scripts for wordcounts, tonality
+7. do the same for the base model with no finetuning
 
-## Output
 
-- `data/final/<religion>_train.txt` — 80% split, lowercased
-- `data/final/<religion>_val.txt` — 20% split, lowercased
-- `data/final/corpus_manifest.json` — token counts, paths, status per religion
+make sure you have a hugging face account, sufficient GPU/SCC setup, and kaggle credentials. 
 
-## Cleaning Pipeline
-
-1. Strip HTML tags, footnote markers, verse/chapter headers
-2. Remove non-Latin script characters (Arabic, Hebrew, Devanagari) from bilingual files
-3. Discard lines with fewer than 4 words
-4. `langdetect` filter — drop any passage not detected as English
-5. Deduplicate (case-insensitive)
-6. Token target: 50k–200k tokens per religion (whitespace proxy: ~0.75 words/token)
+If I were to do this project again, I would have used a different source for judiaism. If you have a better one, by all means please try!
