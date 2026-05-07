@@ -8,8 +8,6 @@ nlp = spacy.load("en_core_web_sm")
 def classify_verb_usage(doc):
     pres_count = 0
     sug_count = 0
-
-    # 1. Broad Lexicons (Categorized by Lemma)
     PRESCRIPTIVE_LEMMAS = {"must", "should", "shall", "ought", "require", "mandate", "command", "obligate"}
     SUGGESTIVE_LEMMAS = {"might", "could", "may", "suggest", "recommend", "consider", "appear", "seem"}
 
@@ -21,22 +19,22 @@ def classify_verb_usage(doc):
             elif token.lemma_ in SUGGESTIVE_LEMMAS:
                 sug_count += 1
         
-        # 2. Detect Imperatives (The "Command" Mood)
-        # Verbs that are the ROOT and have no clear subject (nsubj)
+        Detect Imperatives (The "Command" Mood)
+       
         elif token.pos_ == "VERB" and token.dep_ == "ROOT":
             has_subject = any(child.dep_ in ("nsubj", "nsubjpass") for child in token.children)
             if not has_subject:
                 # This is likely a command: "Do this," "Observe the fast."
                 pres_count += 1
 
-        # 3. Detect Passive Obligation
-        # e.g., "is required", "are expected"
+        # Detect Passive Obligation
+      
         elif token.lemma_ in {"require", "expect", "forbid", "prohibit"}:
             if any(child.dep_ == "auxpass" for child in token.children):
                 pres_count += 1
 
         # 4. Detect Suggestive Hedging
-        # e.g., "It is argued", "It is thought"
+    
         elif token.lemma_ in {"think", "believe", "argue", "propose"}:
             if any(child.dep_ == "auxpass" for child in token.children):
                 sug_count += 1
@@ -47,7 +45,6 @@ def run_analysis(text):
     if not text:
         return 0.0, 0.0
     
-    # Process text in chunks if it's massive (training data can be huge)
     doc = nlp(text[:1000000]) 
     p, s = classify_verb_usage(doc)
     
@@ -63,13 +60,10 @@ def main():
     print("-" * 70)
 
     for rel in religions:
-        # Training Data Analysis
         train_path = Path(f"data/final/{rel}_train.txt")
         if train_path.exists():
             p, s = run_analysis(train_path.read_text(encoding='utf-8'))
             print(f"{rel.capitalize():<15} | Training     | {p:>13.2f}% | {s:>13.2f}%")
-
-        # Response Analysis
         resp_path = Path(f"results/prompt_responses/{rel}/responses.json")
         if resp_path.exists():
             with open(resp_path, 'r') as f:
