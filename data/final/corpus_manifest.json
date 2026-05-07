@@ -1,0 +1,70 @@
+{
+  "christianity": {
+    "status": "ok",
+    "original_passages": 30575,
+    "original_tokens_approx": 1037946,
+    "final_passages": 5958,
+    "final_tokens_approx": 199964,
+    "train": {
+      "passages": 4766,
+      "tokens_approx": 159925,
+      "path": "data/final/christianity_train.txt"
+    },
+    "val": {
+      "passages": 1192,
+      "tokens_approx": 40038,
+      "path": "data/final/christianity_val.txt"
+    }
+  },
+  "islam": {
+    "status": "ok",
+    "original_passages": 6030,
+    "original_tokens_approx": 196108,
+    "final_passages": 6030,
+    "final_tokens_approx": 196108,
+    "train": {
+      "passages": 4824,
+      "tokens_approx": 156725,
+      "path": "data/final/islam_train.txt"
+    },
+    "val": {
+      "passages": 1206,
+      "tokens_approx": 39382,
+      "path": "data/final/islam_val.txt"
+    }
+  },
+  "hinduism": {
+    "status": "ok",
+    "original_passages": 14906,
+    "original_tokens_approx": 416765,
+    "final_passages": 6952,
+    "final_tokens_approx": 199930,
+    "train": {
+      "passages": 5561,
+      "tokens_approx": 160070,
+      "path": "data/final/hinduism_train.txt"
+    },
+    "val": {
+      "passages": 1391,
+      "tokens_approx": 39860,
+      "path": "data/final/hinduism_val.txt"
+    }
+  },
+  "judaism": {
+    "status": "ok",
+    "original_passages": 5356,
+    "original_tokens_approx": 707465,
+    "final_passages": 1543,
+    "final_tokens_approx": 199860,
+    "train": {
+      "passages": 1234,
+      "tokens_approx": 157366,
+      "path": "data/final/judaism_train.txt"
+    },
+    "val": {
+      "passages": 309,
+      "tokens_approx": 42493,
+      "path": "data/final/judaism_val.txt"
+    }
+  }
+}
