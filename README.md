@@ -1,4 +1,4 @@
-
+NOTE: I did not include the folder with the loaded in models and finetuned models in here from the SCC because they were too large for github. Please run the scripts to load these in yourself, and save them in your project. You will need to request access from Hugging Face for the models in the code! 
 ## Setup
 
 ```bash
